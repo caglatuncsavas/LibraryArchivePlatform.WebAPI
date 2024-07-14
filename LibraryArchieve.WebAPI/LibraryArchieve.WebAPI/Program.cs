@@ -1,5 +1,6 @@
 using LibraryArchieve.WebAPI.Data;
 using LibraryArchieve.WebAPI.Data.Entities;
+using LibraryArchieve.WebAPI.Repositories;
 using LibraryArchieve.WebAPI.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
@@ -7,12 +8,27 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using System;
+using Serilog;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
+
+Log.Logger = new LoggerConfiguration()
+    .ReadFrom.Configuration(builder.Configuration)
+    .CreateLogger();
+
+builder.Host.UseSerilog();
+
 builder.Services.TryAddScoped<JwtProvider>();
+
+builder.Services.AddAutoMapper(typeof(Program).Assembly);
+
+builder.Services.AddScoped<IBookRepository, BookRepository>();
+
+builder.Services.AddScoped<IBookShelvesRepository, BookShelvesRepository>();
+
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 builder.Services.AddAuthentication().AddJwtBearer(options =>
 {

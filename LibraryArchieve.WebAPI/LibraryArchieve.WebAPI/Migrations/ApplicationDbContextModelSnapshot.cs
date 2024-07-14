@@ -22,7 +22,7 @@ namespace LibraryArchieve.WebAPI.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("LibraryArchieve.WebAPI.Entities.AppRole", b =>
+            modelBuilder.Entity("LibraryArchieve.WebAPI.Data.Entities.AppRole", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -42,7 +42,7 @@ namespace LibraryArchieve.WebAPI.Migrations
                     b.ToTable("Roles");
                 });
 
-            modelBuilder.Entity("LibraryArchieve.WebAPI.Entities.AppUser", b =>
+            modelBuilder.Entity("LibraryArchieve.WebAPI.Data.Entities.AppUser", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -103,7 +103,7 @@ namespace LibraryArchieve.WebAPI.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("LibraryArchieve.WebAPI.Entities.AppUserRole", b =>
+            modelBuilder.Entity("LibraryArchieve.WebAPI.Data.Entities.AppUserRole", b =>
                 {
                     b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier");
@@ -118,15 +118,325 @@ namespace LibraryArchieve.WebAPI.Migrations
                     b.ToTable("AppUserRoles");
                 });
 
-            modelBuilder.Entity("LibraryArchieve.WebAPI.Entities.AppUserRole", b =>
+            modelBuilder.Entity("LibraryArchieve.WebAPI.Data.Entities.Book", b =>
                 {
-                    b.HasOne("LibraryArchieve.WebAPI.Entities.AppRole", "Role")
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Author")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CoverImageUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ISBN")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ShelfLocation")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Books");
+                });
+
+            modelBuilder.Entity("LibraryArchieve.WebAPI.Data.Entities.BookCategory", b =>
+                {
+                    b.Property<int>("BookId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
+                    b.HasKey("BookId", "CategoryId");
+
+                    b.HasIndex("CategoryId");
+
+                    b.ToTable("BookCategories");
+                });
+
+            modelBuilder.Entity("LibraryArchieve.WebAPI.Data.Entities.BookShelf", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("BookId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Location")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Notes")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Section")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Shelf")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BookId");
+
+                    b.ToTable("BookShelves");
+                });
+
+            modelBuilder.Entity("LibraryArchieve.WebAPI.Data.Entities.Category", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Categories");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Roman"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Bilim Kurgu"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Felsefe"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Tarih"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Psikoloji"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Din"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Bilim"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Edebiyat"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Sanat"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Çocuk"
+                        },
+                        new
+                        {
+                            Id = 11,
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Dergi"
+                        },
+                        new
+                        {
+                            Id = 12,
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Diğer"
+                        },
+                        new
+                        {
+                            Id = 13,
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Bilgisayar"
+                        },
+                        new
+                        {
+                            Id = 14,
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Mizah"
+                        },
+                        new
+                        {
+                            Id = 15,
+                            IsActive = true,
+                            IsDeleted = false,
+                            Name = "Kurgu"
+                        });
+                });
+
+            modelBuilder.Entity("LibraryArchieve.WebAPI.Data.Entities.Note", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("BookId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsShared")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("Privacy")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BookId");
+
+                    b.ToTable("Notes");
+                });
+
+            modelBuilder.Entity("LibraryArchieve.WebAPI.Data.Entities.AppUserRole", b =>
+                {
+                    b.HasOne("LibraryArchieve.WebAPI.Data.Entities.AppRole", "Role")
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Role");
+                });
+
+            modelBuilder.Entity("LibraryArchieve.WebAPI.Data.Entities.BookCategory", b =>
+                {
+                    b.HasOne("LibraryArchieve.WebAPI.Data.Entities.Book", "Book")
+                        .WithMany("BookCategories")
+                        .HasForeignKey("BookId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("LibraryArchieve.WebAPI.Data.Entities.Category", "Category")
+                        .WithMany("BookCategories")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Book");
+
+                    b.Navigation("Category");
+                });
+
+            modelBuilder.Entity("LibraryArchieve.WebAPI.Data.Entities.BookShelf", b =>
+                {
+                    b.HasOne("LibraryArchieve.WebAPI.Data.Entities.Book", "Book")
+                        .WithMany()
+                        .HasForeignKey("BookId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Book");
+                });
+
+            modelBuilder.Entity("LibraryArchieve.WebAPI.Data.Entities.Note", b =>
+                {
+                    b.HasOne("LibraryArchieve.WebAPI.Data.Entities.Book", "Book")
+                        .WithMany()
+                        .HasForeignKey("BookId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Book");
+                });
+
+            modelBuilder.Entity("LibraryArchieve.WebAPI.Data.Entities.Book", b =>
+                {
+                    b.Navigation("BookCategories");
+                });
+
+            modelBuilder.Entity("LibraryArchieve.WebAPI.Data.Entities.Category", b =>
+                {
+                    b.Navigation("BookCategories");
                 });
 #pragma warning restore 612, 618
         }

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Cagla_Savas_LibraryArchivePlatform_CodeCase\\LibraryArchieve.WebAPI\\LibraryArchieve.WebAPI\\LibraryArchieve.WebAPI.csproj": {}
+    "C:\\LibraryArchivePlatform.WebAPI\\LibraryArchieve.WebAPI\\LibraryArchieve.WebAPI\\LibraryArchieve.WebAPI.csproj": {}
   },
   "projects": {
-    "C:\\Cagla_Savas_LibraryArchivePlatform_CodeCase\\LibraryArchieve.WebAPI\\LibraryArchieve.WebAPI\\LibraryArchieve.WebAPI.csproj": {
+    "C:\\LibraryArchivePlatform.WebAPI\\LibraryArchieve.WebAPI\\LibraryArchieve.WebAPI\\LibraryArchieve.WebAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Cagla_Savas_LibraryArchivePlatform_CodeCase\\LibraryArchieve.WebAPI\\LibraryArchieve.WebAPI\\LibraryArchieve.WebAPI.csproj",
+        "projectUniqueName": "C:\\LibraryArchivePlatform.WebAPI\\LibraryArchieve.WebAPI\\LibraryArchieve.WebAPI\\LibraryArchieve.WebAPI.csproj",
         "projectName": "LibraryArchieve.WebAPI",
-        "projectPath": "C:\\Cagla_Savas_LibraryArchivePlatform_CodeCase\\LibraryArchieve.WebAPI\\LibraryArchieve.WebAPI\\LibraryArchieve.WebAPI.csproj",
+        "projectPath": "C:\\LibraryArchivePlatform.WebAPI\\LibraryArchieve.WebAPI\\LibraryArchieve.WebAPI\\LibraryArchieve.WebAPI.csproj",
         "packagesPath": "C:\\Users\\ercan\\.nuget\\packages\\",
-        "outputPath": "C:\\Cagla_Savas_LibraryArchivePlatform_CodeCase\\LibraryArchieve.WebAPI\\LibraryArchieve.WebAPI\\obj\\",
+        "outputPath": "C:\\LibraryArchivePlatform.WebAPI\\LibraryArchieve.WebAPI\\LibraryArchieve.WebAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ercan\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -45,6 +45,10 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[13.0.1, )"
+            },
             "FluentValidation": {
               "target": "Package",
               "version": "[11.9.2, )"
@@ -67,9 +71,29 @@
               "target": "Package",
               "version": "[8.0.6, )"
             },
+            "Serilog.AspNetCore": {
+              "target": "Package",
+              "version": "[8.0.1, )"
+            },
+            "Serilog.Sinks.Console": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "Serilog.Sinks.File": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.4.0, )"
+            },
+            "System.Collections": {
+              "target": "Package",
+              "version": "[4.3.0, )"
+            },
+            "TS.EntityFrameworkCore.GenericRepository": {
+              "target": "Package",
+              "version": "[8.0.2, )"
             }
           },
           "imports": [

@@ -1,8 +1,12 @@
 ﻿namespace LibraryArchieve.WebAPI.V1.Requests;
 
-public sealed record RegisterRequest(
-    string FirstName,
-    string LastName,
-    string Email,
-    string UserName,
-    string Password);
+public class RegisterRequest
+{
+    public string FirstName { get; set; } = string.Empty;
+    public string LastName { get; set; } = string.Empty;
+    public string Email { get; set; } = string.Empty;
+    public string UserName { get; set; } = string.Empty;
+    public string Password { get; set; } = string.Empty;
+}
+
+

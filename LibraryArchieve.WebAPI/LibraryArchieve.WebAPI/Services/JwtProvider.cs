@@ -8,9 +8,16 @@ using System.Text;
 
 namespace LibraryArchieve.WebAPI.Services;
 
-public class JwtProvider(UserManager<AppUser> userManager)
+public class JwtProvider
 {
-    public async Task<LoginResponse> CreateToken(AppUser appUser, List<string?>? roles)
+  private readonly UserManager<AppUser> userManager;
+
+    public JwtProvider(UserManager<AppUser> userManager)
+    {
+        this.userManager = userManager;
+    }
+
+    public async Task<LoginResponse> CreateToken(AppUser appUser, List<string>? roles)
     {
         List<Claim> claims = new()
         {
