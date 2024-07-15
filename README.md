@@ -34,4 +34,5 @@ This project is to design and implement a comprehensive backend system for libra
 7. Log with Serilog
 8. Perform Unit Tests with xUnit
 9. JWT-based authentication
+
 ![image](https://github.com/user-attachments/assets/ad87eacc-fb40-433d-918d-8fa25898054c)
